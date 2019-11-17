@@ -10,6 +10,9 @@ import javax.swing.border.EmptyBorder;
 import org.apache.ibatis.session.SqlSession;
 
 import com.manager.domain.Commodity;
+import com.manager.domain.FirstClass;
+import com.manager.domain.SecondClass;
+import com.manager.mapper.ClassMapper;
 import com.manager.mapper.CommodityMapper;
 import com.manager.mapper.MerchantMapper;
 import com.manager.mapper.SqlSessionUtil;
@@ -23,6 +26,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
@@ -46,9 +50,12 @@ public class CommodityShow extends JFrame {
 	 */
 	public CommodityShow(Commodity res) {
 		session = SqlSessionUtil.getSqlSession();
+		List<FirstClass> fl = session.getMapper(ClassMapper.class).getFirstClass();
+		List<SecondClass> sl = session.getMapper(ClassMapper.class).getSecondClass();
+		
 		
 		setTitle("商品详情");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 313, 313);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,14 +83,16 @@ public class CommodityShow extends JFrame {
 		prise.setText(String.valueOf(res.getPPrise()));
 		contentPane.add(prise);
 		
-		JComboBox firstClass = new JComboBox();
+		JComboBox<String> firstClass = new JComboBox<String>();
 		firstClass.setEnabled(false);
 		firstClass.setBounds(74, 105, 103, 21);
+		firstClass.addItem(session.getMapper(ClassMapper.class).getFirstClassNameBySecondClassId(res.getSId()));
 		contentPane.add(firstClass);
 		
-		JComboBox secondClass = new JComboBox();
+		JComboBox<String> secondClass = new JComboBox<String>();
 		secondClass.setEnabled(false);
 		secondClass.setBounds(194, 105, 93, 21);
+		secondClass.addItem(sl.get(res.getSId()-1).getSName());
 		contentPane.add(secondClass);
 		
 		JLabel lblNewLabel = new JLabel("商品名称");

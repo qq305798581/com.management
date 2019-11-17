@@ -14,6 +14,7 @@ import com.manager.mapper.SqlSessionUtil;
 
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,7 +36,7 @@ public class CommodityMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public CommodityMenu(Administrator admin) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 291, 152);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,7 +59,13 @@ public class CommodityMenu extends JFrame {
 				if(textField.getText()!="") {
 					CommodityMapper mapper = SqlSessionUtil.getSqlSession().getMapper(CommodityMapper.class);
 					Commodity res = mapper.selectById(Integer.valueOf(textField.getText()));
-					
+					if(res==null) {
+						JOptionPane.showMessageDialog(contentPane, "没有找到该商品", "错误",
+								JOptionPane.WARNING_MESSAGE);
+					}else {
+						CommodityShow fr = new CommodityShow(res);
+						fr.setVisible(true);
+					}
 				}
 				
 				
@@ -69,10 +76,40 @@ public class CommodityMenu extends JFrame {
 		contentPane.add(select);
 		
 		JButton update = new JButton("修改");
+		update.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(textField.getText()!="") {
+					CommodityMapper mapper = SqlSessionUtil.getSqlSession().getMapper(CommodityMapper.class);
+					Commodity res = mapper.selectById(Integer.valueOf(textField.getText()));
+					if(res==null) {
+						JOptionPane.showMessageDialog(contentPane, "没有找到该商品", "错误",
+								JOptionPane.WARNING_MESSAGE);
+					}else {
+						CommodityAction fr = new CommodityAction(res);
+						fr.setVisible(true);
+					}
+				}
+			}
+		});
 		update.setBounds(155, 77, 93, 23);
 		contentPane.add(update);
 		
 		JButton delet = new JButton("删除");
+		delet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(textField.getText()!="") {
+					CommodityMapper mapper = SqlSessionUtil.getSqlSession().getMapper(CommodityMapper.class);
+					Commodity res = mapper.selectById(Integer.valueOf(textField.getText()));
+					if(res==null) {
+						JOptionPane.showMessageDialog(contentPane, "没有找到该商品", "错误",
+								JOptionPane.WARNING_MESSAGE);
+					}else {
+						mapper.deleteById(Integer.valueOf(textField.getText()));
+						SqlSessionUtil.getSqlSession().commit();
+					}
+				}
+			}
+		});
 		delet.setBounds(16, 77, 93, 23);
 		contentPane.add(delet);
 		

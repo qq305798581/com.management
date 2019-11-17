@@ -20,6 +20,7 @@
         <mapper class="com.manager.mapper.LoginMapper"></mapper>
         <mapper class="com.manager.mapper.CommodityMapper"></mapper>
         <mapper class="com.manager.mapper.MerchantMapper"></mapper>
+        <mapper class="com.manager.mapper.ClassMapper"></mapper>
     </mappers>
     
 </configuration>
