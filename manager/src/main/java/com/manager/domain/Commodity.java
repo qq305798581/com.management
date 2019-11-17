@@ -1,47 +1,52 @@
 package com.manager.domain;
 
 public class Commodity {
-	private int id;
-	private String name;
-	private int prise;
-	private int secondClass;
-	private String description;
-	private int mId;
-	public int getId() {
-		return id;
+	private int PId;
+	private String PName;
+	private int PPrise;
+	private int SId;
+	private String PDescribe;
+	private int MId;
+	public int getPId() {
+		return PId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setPId(int pId) {
+		PId = pId;
 	}
-	public String getName() {
-		return name;
+	public String getPName() {
+		return PName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setPName(String pName) {
+		PName = pName;
 	}
-	public int getPrise() {
-		return prise;
+	public int getPPrise() {
+		return PPrise;
 	}
-	public void setPrise(int prise) {
-		this.prise = prise;
+	public void setPPrise(int pPrise) {
+		PPrise = pPrise;
 	}
-	public int getSecondClass() {
-		return secondClass;
+	public int getSId() {
+		return SId;
 	}
-	public void setSecondClass(int secondClass) {
-		this.secondClass = secondClass;
+	public void setSId(int sId) {
+		SId = sId;
 	}
-	public String getDescription() {
-		return description;
+	public String getPDescribe() {
+		return PDescribe;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPDescribe(String pDescribe) {
+		PDescribe = pDescribe;
 	}
-	public int getmId() {
-		return mId;
+	public int getMId() {
+		return MId;
 	}
-	public void setmId(int mId) {
-		this.mId = mId;
+	public void setMId(int mId) {
+		MId = mId;
+	}
+	@Override
+	public String toString() {
+		return "Commodity [PId=" + PId + ", PName=" + PName + ", PPrise=" + PPrise + ", SId=" + SId + ", PDescribe="
+				+ PDescribe + ", MId=" + MId + "]";
 	}
 	
 	
