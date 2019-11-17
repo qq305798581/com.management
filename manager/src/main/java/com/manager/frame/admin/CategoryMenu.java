@@ -62,16 +62,11 @@ public class CategoryMenu extends JFrame {
 		contentPane.add(first);
 		
 		JRadioButton second = new JRadioButton("二级类别");
-		second.setBounds(170, 23, 93, 23);
+		second.setBounds(171, 22, 93, 23);
 		contentPane.add(second);
-		
-		JRadioButton third = new JRadioButton("三级类别");
-		third.setBounds(306, 23, 93, 23);
-		contentPane.add(third);
 		
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(first);
 		bg.add(second);
-		bg.add(third);
 	}
 }
