@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.manager.domain.Administrator;
+
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JTable;
@@ -15,26 +18,12 @@ public class CommodityMenu extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CommodityMenu frame = new CommodityMenu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public CommodityMenu() {
+	public CommodityMenu(Administrator admin) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 451, 500);
 		contentPane = new JPanel();
@@ -59,7 +48,7 @@ public class CommodityMenu extends JFrame {
 		contentPane.add(delet);
 		
 		table = new JTable();
-		table.setBounds(20, 43, 405, 408);
+		table.setBounds(10, 43, 405, 408);
 		contentPane.add(table);
 	}
 }

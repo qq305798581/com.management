@@ -14,15 +14,17 @@ import com.manager.domain.Administrator;
 import javax.swing.JButton;
 import java.awt.Button;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdminMenu extends JFrame {
 
 	private JPanel contentPane;
-
+	private Administrator administrator;
 	/**
 	 * Create the frame.
 	 */
-	public AdminMenu(Administrator admin, SqlSession session) {
+	public AdminMenu(Administrator admin) {
 		setTitle("Administrator Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 305);
@@ -30,6 +32,8 @@ public class AdminMenu extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		this.administrator = admin;
 		
 		JLabel welcom = new JLabel("欢迎回来：");
 		welcom.setBounds(30, 81, 77, 15);
@@ -40,6 +44,12 @@ public class AdminMenu extends JFrame {
 		contentPane.add(username);
 		
 		JButton commodity = new JButton("商品管理");
+		commodity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CommodityMenu commodity = new CommodityMenu(administrator);
+				commodity.setVisible(true);
+			}
+		});
 		commodity.setBounds(159, 38, 93, 23);
 		contentPane.add(commodity);
 		

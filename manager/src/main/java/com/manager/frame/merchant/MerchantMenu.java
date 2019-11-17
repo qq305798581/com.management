@@ -9,31 +9,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.manager.domain.Merchant;
+
 public class MerchantMenu extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MerchantMenu frame = new MerchantMenu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public MerchantMenu() {
-		setTitle("Administrator Menu");
+	public MerchantMenu(Merchant merchant) {
+		setTitle("Merchant Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 304, 234);
 		contentPane = new JPanel();
@@ -45,7 +33,7 @@ public class MerchantMenu extends JFrame {
 		welcom.setBounds(30, 81, 77, 15);
 		contentPane.add(welcom);
 		
-		JLabel username = new JLabel("");
+		JLabel username = new JLabel(merchant.getName());
 		username.setBounds(30, 110, 54, 50);
 		contentPane.add(username);
 		

@@ -11,11 +11,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.manager.domain.Administrator;
+import com.manager.domain.Merchant;
 import com.manager.frame.admin.AdminMenu;
+import com.manager.frame.merchant.MerchantMenu;
 import com.manager.mapper.LoginMapper;
 import com.manager.mapper.SqlSessionUtil;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
@@ -29,6 +32,8 @@ public class LoginFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField usernameText;
 	private JPasswordField passwordField;
+	private JRadioButton user;
+	private JRadioButton admin;
 
 	/**
 	 * Launch the application.
@@ -75,12 +80,12 @@ public class LoginFrame extends JFrame {
 		passwordField.setBounds(79, 56, 132, 21);
 		contentPane.add(passwordField);
 		
-		JRadioButton user = new JRadioButton("商家登陆");
+		user = new JRadioButton("商家登陆");
 		user.setSelected(true);
 		user.setBounds(20, 98, 93, 23);
 		contentPane.add(user);
 		
-		JRadioButton admin = new JRadioButton("管理员登陆");
+		admin = new JRadioButton("管理员登陆");
 		admin.setBounds(132, 98, 103, 23);
 		contentPane.add(admin);
 		
@@ -93,15 +98,39 @@ public class LoginFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				SqlSession session = SqlSessionUtil.getSqlSession();
 				LoginMapper mapper = session.getMapper(LoginMapper.class);
-				Administrator admin = mapper.adminLogin(usernameText.getText(), 
-						new String(passwordField.getPassword()));
-				if(admin==null) {
-					//弹窗用户不存在
+				
+				if(usernameText.getText()==null) {
+					JOptionPane.showMessageDialog(contentPane, "请输入账号", "请输入账号",
+							JOptionPane.WARNING_MESSAGE);
 				}else {
-					AdminMenu m = new AdminMenu(admin,session);
-					m.setVisible(true);
-					dispose();
+					if(user.isSelected()&&!admin.isSelected()) {
+						Merchant mer = mapper.merchantLogin(usernameText.getText(), 
+								new String(passwordField.getPassword()));
+						if(mer==null) {
+							JOptionPane.showMessageDialog(contentPane, "用户名或密码错误", "错误",
+									JOptionPane.WARNING_MESSAGE);
+						}else {
+							MerchantMenu m = new MerchantMenu(mer);
+							m.setVisible(true);
+							dispose();
+						}
+					}else if(!user.isSelected()&&admin.isSelected()) {
+						Administrator admin = mapper.adminLogin(usernameText.getText(), 
+								new String(passwordField.getPassword()));
+						if(admin==null) {
+							JOptionPane.showMessageDialog(contentPane, "用户名或密码错误", "错误",
+									JOptionPane.WARNING_MESSAGE);
+						}else {
+							AdminMenu m = new AdminMenu(admin);
+							m.setVisible(true);
+							dispose();
+						}
+					}else {
+						
+					}
 				}
+				
+				
 				
 			}
 		});
