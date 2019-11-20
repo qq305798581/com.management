@@ -1,4 +1,4 @@
-package com.manager.frame.admin;
+package com.manager.frame.merchant;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -127,14 +127,30 @@ public class CommodityShow extends JFrame {
 		warning.setBounds(209, 72, 78, 21);
 		contentPane.add(warning);
 		
-		JLabel label_4 = new JLabel("平均评价分");
-		label_4.setBounds(69, 271, 85, 15);
+		JLabel label_4 = new JLabel("好评数");
+		label_4.setBounds(10, 276, 54, 15);
 		contentPane.add(label_4);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(149, 271, 54, 15);
-		lblNewLabel_1.setText(
-				String.valueOf(session.getMapper(CommodityMapper.class).selectAvgScore(res.getPId())));
-		contentPane.add(lblNewLabel_1);
+		JLabel label_5 = new JLabel("中评数");
+		label_5.setBounds(101, 276, 54, 15);
+		contentPane.add(label_5);
+		
+		JLabel label_6 = new JLabel("差评数");
+		label_6.setBounds(194, 276, 54, 15);
+		contentPane.add(label_6);
+		
+		JLabel good = new JLabel("");
+		good.setBounds(55, 276, 45, 15);
+		contentPane.add(good);
+		
+		JLabel well = new JLabel("");
+		well.setBounds(142, 276, 45, 15);
+		contentPane.add(well);
+		
+		JLabel bad = new JLabel("");
+		bad.setBounds(242, 276, 45, 15);
+		contentPane.add(bad);
 	}
+
+
 }

@@ -1,4 +1,4 @@
-package com.manager.frame.admin;
+package com.manager.frame.merchant;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.manager.domain.Commodity;
 import com.manager.domain.FirstClass;
+import com.manager.domain.Merchant;
 import com.manager.domain.SecondClass;
 import com.manager.mapper.ClassMapper;
 import com.manager.mapper.CommodityMapper;
@@ -46,31 +47,18 @@ public class CommodityAction extends JFrame {
 	private SqlSession session = SqlSessionUtil.getSqlSession();
 	private boolean isMerchantExist;
 	private Integer merchantId;
+	private Merchant merchant;
 
 	List<FirstClass> fl = session.getMapper(ClassMapper.class).getFirstClass();
 	List<SecondClass> sl = session.getMapper(ClassMapper.class).getSecondClass();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CommodityAction frame = new CommodityAction();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public CommodityAction() {
-
+	public CommodityAction(Merchant mer) {
+		this.merchant = mer;
 
 		setTitle("添加商品");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -190,28 +178,8 @@ public class CommodityAction extends JFrame {
 		merchantAccount.setBounds(74, 72, 125, 21);
 		contentPane.add(merchantAccount);
 		merchantAccount.setColumns(10);
-		merchantAccount.addFocusListener(new FocusListener(){
-
-			public void focusGained(FocusEvent e) {
-			}
-
-			public void focusLost(FocusEvent e) {
-				if(merchantAccount.getText()!="") {
-					MerchantMapper mapper = session.getMapper(MerchantMapper.class);
-					Integer temp = mapper.selectIdByAccount(merchantAccount.getText());
-					if(temp==null) {
-						warning.setText("账号不存在");
-						isMerchantExist = false;
-					}else {
-						warning.setText("");
-						isMerchantExist = true;
-						merchantId = temp;
-					}
-				}
-
-			}
-
-		});
+		merchantAccount.setText(merchant.getMName());
+		merchantAccount.setEnabled(false);
 
 		JLabel label_3 = new JLabel("商家账号");
 		label_3.setBounds(10, 75, 54, 15);

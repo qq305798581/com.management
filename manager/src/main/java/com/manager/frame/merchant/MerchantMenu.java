@@ -10,10 +10,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.manager.domain.Merchant;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MerchantMenu extends JFrame {
 
 	private JPanel contentPane;
+	
+	private Merchant mer;
 
 	
 
@@ -21,8 +25,10 @@ public class MerchantMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public MerchantMenu(Merchant merchant) {
+		this.mer = merchant;
+		
 		setTitle("Merchant Menu");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 304, 234);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -33,11 +39,17 @@ public class MerchantMenu extends JFrame {
 		welcom.setBounds(30, 81, 77, 15);
 		contentPane.add(welcom);
 		
-		JLabel username = new JLabel(merchant.getName());
+		JLabel username = new JLabel(merchant.getMName());
 		username.setBounds(30, 110, 54, 50);
 		contentPane.add(username);
 		
 		JButton commodity = new JButton("商品管理");
+		commodity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CommodityMenu cm = new CommodityMenu(mer);
+				cm .setVisible(true);
+			}
+		});
 		commodity.setBounds(159, 38, 93, 23);
 		contentPane.add(commodity);
 		

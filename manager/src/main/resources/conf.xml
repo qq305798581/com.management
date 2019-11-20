@@ -21,6 +21,9 @@
         <mapper class="com.manager.mapper.CommodityMapper"></mapper>
         <mapper class="com.manager.mapper.MerchantMapper"></mapper>
         <mapper class="com.manager.mapper.ClassMapper"></mapper>
+        <mapper class="com.manager.mapper.UserMapper"></mapper>
+        <mapper class="com.manager.mapper.CategoryMapper"></mapper>
+        <mapper class="com.manager.mapper.TransactionMapper"></mapper>
     </mappers>
     
 </configuration>

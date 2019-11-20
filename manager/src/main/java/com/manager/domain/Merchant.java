@@ -1,41 +1,84 @@
 package com.manager.domain;
 
 public class Merchant {
-	private int id;
-	private String account;
-	private String pwd;
-	private String name;
-	private int phone;
-	
-	public int getId() {
-		return id;
+	private int MId;
+	private String MAccount;
+	private String MPasswd;
+	private String MName;
+	private String MPhone;
+	public int getMId() {
+		return MId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setMId(int mId) {
+		MId = mId;
 	}
-	public String getAccount() {
-		return account;
+	public String getMAccount() {
+		return MAccount;
 	}
-	public void setAccount(String account) {
-		this.account = account;
+	public void setMAccount(String mAccount) {
+		MAccount = mAccount;
 	}
-	public String getPwd() {
-		return pwd;
+	public String getMPasswd() {
+		return MPasswd;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setMPasswd(String mPasswd) {
+		MPasswd = mPasswd;
 	}
-	public String getName() {
-		return name;
+	public String getMName() {
+		return MName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMName(String mName) {
+		MName = mName;
 	}
-	public int getPhone() {
-		return phone;
+	public String getMPhone() {
+		return MPhone;
 	}
-	public void setPhone(int phone) {
-		this.phone = phone;
+	public void setMPhone(String mPhone) {
+		MPhone = mPhone;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((MAccount == null) ? 0 : MAccount.hashCode());
+		result = prime * result + MId;
+		result = prime * result + ((MName == null) ? 0 : MName.hashCode());
+		result = prime * result + ((MPasswd == null) ? 0 : MPasswd.hashCode());
+		result = prime * result + ((MPhone == null) ? 0 : MPhone.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Merchant other = (Merchant) obj;
+		if (MAccount == null) {
+			if (other.MAccount != null)
+				return false;
+		} else if (!MAccount.equals(other.MAccount))
+			return false;
+		if (MId != other.MId)
+			return false;
+		if (MName == null) {
+			if (other.MName != null)
+				return false;
+		} else if (!MName.equals(other.MName))
+			return false;
+		if (MPasswd == null) {
+			if (other.MPasswd != null)
+				return false;
+		} else if (!MPasswd.equals(other.MPasswd))
+			return false;
+		if (MPhone == null) {
+			if (other.MPhone != null)
+				return false;
+		} else if (!MPhone.equals(other.MPhone))
+			return false;
+		return true;
 	}
 	
 	

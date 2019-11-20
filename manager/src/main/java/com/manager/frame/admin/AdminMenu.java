@@ -54,6 +54,12 @@ public class AdminMenu extends JFrame {
 		contentPane.add(commodity);
 		
 		JButton user = new JButton("用户管理");
+		user.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserMenu m = new UserMenu();
+				m.setVisible(true);
+			}
+		});
 		user.setBounds(159, 71, 93, 23);
 		contentPane.add(user);
 		
@@ -62,6 +68,12 @@ public class AdminMenu extends JFrame {
 		contentPane.add(category);
 		
 		JButton merchant = new JButton("商家管理");
+		merchant.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MerchantMenu mm = new MerchantMenu();
+				mm.setVisible(true);
+			}
+		});
 		merchant.setBounds(159, 137, 93, 23);
 		contentPane.add(merchant);
 		

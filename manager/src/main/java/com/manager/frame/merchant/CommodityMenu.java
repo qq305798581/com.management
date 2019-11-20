@@ -1,4 +1,4 @@
-package com.manager.frame.admin;
+package com.manager.frame.merchant;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.manager.domain.Administrator;
 import com.manager.domain.Commodity;
+import com.manager.domain.Merchant;
 import com.manager.mapper.CommodityMapper;
 import com.manager.mapper.SqlSessionUtil;
 
@@ -30,12 +31,14 @@ public class CommodityMenu extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 
-
+	private Merchant merchant;
 
 	/**
 	 * Create the frame.
 	 */
-	public CommodityMenu(Administrator admin) {
+	public CommodityMenu(Merchant mer) {
+		this.merchant = mer;
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 291, 152);
 		contentPane = new JPanel();
@@ -46,7 +49,7 @@ public class CommodityMenu extends JFrame {
 		JButton insert = new JButton("添加");
 		insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CommodityAction frame = new CommodityAction();
+				CommodityAction frame = new CommodityAction(merchant);
 				frame.setVisible(true);
 			}
 		});
