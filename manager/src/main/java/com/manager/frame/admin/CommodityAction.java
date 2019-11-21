@@ -51,22 +51,6 @@ public class CommodityAction extends JFrame {
 	List<SecondClass> sl = session.getMapper(ClassMapper.class).getSecondClass();
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CommodityAction frame = new CommodityAction();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public CommodityAction() {

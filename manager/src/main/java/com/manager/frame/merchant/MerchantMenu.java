@@ -53,16 +53,18 @@ public class MerchantMenu extends JFrame {
 		commodity.setBounds(159, 38, 93, 23);
 		contentPane.add(commodity);
 		
-		JButton user = new JButton("用户管理");
-		user.setBounds(159, 71, 93, 23);
-		contentPane.add(user);
-		
 		JButton oder = new JButton("订单管理");
-		oder.setBounds(159, 110, 93, 23);
+		oder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OrderAction oc = new OrderAction(mer);
+				oc.setVisible(true);
+			}
+		});
+		oder.setBounds(159, 81, 93, 23);
 		contentPane.add(oder);
 		
 		JButton exit = new JButton("退出");
-		exit.setBounds(159, 143, 93, 23);
+		exit.setBounds(159, 124, 93, 23);
 		contentPane.add(exit);
 	}
 

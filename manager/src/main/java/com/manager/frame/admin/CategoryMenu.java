@@ -17,7 +17,8 @@ import java.awt.event.ActionEvent;
 public class CategoryMenu extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JRadioButton first;
+	private JRadioButton second;
 
 	/**
 	 * Launch the application.
@@ -39,52 +40,38 @@ public class CategoryMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public CategoryMenu() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 351, 146);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 214, 114);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton select = new JButton("类别查找");
-		select.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		select.setBounds(10, 70, 93, 23);
-		contentPane.add(select);
-		
 		JButton add = new JButton("添加类别");
 		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(first.isSelected()) {
+					CategoryAction ca = new CategoryAction(true);
+					ca.setVisible(true);
+				}else {
+					CategoryAction ca = new CategoryAction(false);
+					ca.setVisible(true);
+				}
 			}
 		});
-		add.setBounds(113, 70, 93, 23);
+		add.setBounds(55, 39, 93, 23);
 		contentPane.add(add);
 		
-		JButton update = new JButton("修改类别");
-		update.setBounds(216, 70, 93, 23);
-		contentPane.add(update);
-		
-		JRadioButton first = new JRadioButton("一级类别");
-		first.setBounds(63, 41, 93, 23);
+		first = new JRadioButton("一级类别");
+		first.setBounds(6, 6, 93, 23);
 		contentPane.add(first);
 		
-		JRadioButton second = new JRadioButton("二级类别");
-		second.setBounds(170, 41, 93, 23);
+		second = new JRadioButton("二级类别");
+		second.setBounds(113, 6, 93, 23);
 		contentPane.add(second);
 		
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(first);
 		bg.add(second);
-		
-		textField = new JTextField();
-		textField.setBounds(113, 10, 196, 21);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("请输入类别名称");
-		lblNewLabel.setBounds(10, 13, 93, 15);
-		contentPane.add(lblNewLabel);
 	}
 }

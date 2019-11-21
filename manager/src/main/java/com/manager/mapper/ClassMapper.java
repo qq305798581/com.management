@@ -21,4 +21,7 @@ public interface ClassMapper {
 	
 	@Select("select FId from sclass where SId=#{id}")
 	public Integer getFirstIdBySecondId(int id);
+	
+	@Select("select SName from sclass where SId=#{id}")
+	public String getSecondName(@Param("id")int id);
 }

@@ -22,7 +22,7 @@ public interface CommodityMapper {
 	public int addCommodity(@Param("com")Commodity com);
 	
 	
-	@Select("select * from product where PId=#{id}")
+	@Select("select * from `product` where PId=#{id}")
 	public Commodity selectById(@Param("id")int id);
 	
 	@Delete("delete from product where PId=#{id}")
@@ -32,10 +32,10 @@ public interface CommodityMapper {
 			+ "SId=#{com.SId},PPrise={com.PPrise} where PId=#{com.PId}")
 	public void updateInfo(@Param("com")Commodity com);
 	
-	@Select("SELECT SUM(`comment`.CScore)/COUNT(`comment`.OId)"
+	@Select("SELECT SUM(`comment`.CScore)/COUNT(`comment`.OId) "
 			+ "FROM `transaction`,product,`comment` "
 			+ "WHERE `transaction`.OId = `comment`.OId "
-				+ "AND `transaction`.PId=product.PId"
+				+ "AND `transaction`.PId=product.PId "
 				+ "AND product.PId=#{id}")
 	public float selectAvgScore(@Param("id")int id);
 }

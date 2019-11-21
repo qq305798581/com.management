@@ -31,8 +31,8 @@ public class CategoryAction extends JFrame {
 	private JComboBox<String> comboBox;
 	
 	private boolean isFirstClass;
-
-	
+	private SqlSession session = SqlSessionUtil.getSqlSession();
+	List<FirstClass> fl = session.getMapper(ClassMapper.class).getFirstClass();
 
 	/**
 	 * Create the frame.
@@ -40,7 +40,7 @@ public class CategoryAction extends JFrame {
 	public CategoryAction(boolean isfclass) {
 		this.isFirstClass = isfclass;
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 242, 138);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -59,6 +59,14 @@ public class CategoryAction extends JFrame {
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(74, 39, 135, 21);
 		contentPane.add(comboBox);
+		if(isFirstClass) {
+			comboBox.setEnabled(false);
+		}else {
+			comboBox.setEnabled(true);
+			for(FirstClass i:fl) {
+				comboBox.addItem(i.getFName());
+			}
+		}
 		
 		JLabel lblNewLabel_1 = new JLabel("所属类别");
 		lblNewLabel_1.setBounds(10, 42, 54, 15);
